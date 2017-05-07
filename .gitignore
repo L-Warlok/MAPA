@@ -2,3 +2,8 @@
 *.log
 *.pdf
 *.gz
+*.blg
+*.swp
+*.bbl
+*.sav
+*.bak
