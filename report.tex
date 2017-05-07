@@ -29,7 +29,23 @@ Spinal Surgery}
 
 
 \begin{abstract}
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis nibh quis tempor mattis. Donec venenatis diam eu odio lacinia semper. Vestibulum sapien lacus, malesuada vitae porttitor sed, iaculis in dolor. Quisque eleifend ac erat eu fermentum. Nam in risus in arcu iaculis congue. Nullam accumsan ex quis egestas ornare. Quisque a erat aliquam, tristique metus sed, interdum neque. Aliquam blandit massa a ultrices porta. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis non urna quis metus feugiat tempor. Ut feugiat ipsum enim. Morbi maximus ex at enim dictum vehicula. Suspendisse vulputate turpis convallis, placerat risus eget, egestas lacus. Nullam consectetur ipsum est, a dictum leo maximus sed. Integer quam nunc, euismod tempor pharetra eget, ultricies sed dolor. Nulla facilisi.
+	Pedicle screw surgery requires high levels of accuracy and repeatability, 
+	as is involves a sensitive and vital area of the body; the spine. Solutions
+	that utilise advancements in technology are already in use today. One such
+	solution, based on combining previously taken images of the patient with 
+	real time actions of the surgeon is called Image Guided Surgery(IGS). Unfortunately
+	this system has some drawbacks in that it can not quantify some of the errors involved
+	with the bending of the tools, and can limit the working space of the surgeon as it
+	requires clear line of sight to the patient. A solution to each of these problems 
+	is discussed, one being adding strain sensitive nanowires along the tools to measure
+	the bending, and the other to use an ultrasonic array to determine the trajectory 
+	of the pedicle screw without needing line of sight. Finally, a proposal to combine
+	these two solutions to create a fully autonomous robotic surgeon is explored.
+	An ultrasonic sensor array prototype has already been developed by Amir Manbachi with 
+	promising results. An increase in pedicle screw placement accuracy should reduce
+	the complications of involved with this type of surgery, leading to quicker 
+	patient recovery, and lower patient readmittance, reducing the load on the 
+	healthcare system.
 \end{abstract}
 
 
@@ -60,10 +76,10 @@ to puncture a hole in the outside layer of the bone, before working the
 sharp tip of the tool through the soft inner part of the bone. The surgeon
 relies on previous experience of the resistance of different types of bone to
 determine the correct heading for the tool. Once the hole has been created,
-the pedicle screw is inserted.
+the pedicle screw is inserted\cite{Manbachi2016}.
 
 With the advent of technology, this method has been augmented with the use of computers to
-create a process known as image-guided surgery (IGS). An example of IGS is shown in Figure \ref{fig:igs}.
+create a process known as image-guided surgery (IGS)\cite{Azad2016}. An example of IGS is shown in Figure \ref{fig:igs}.
 These techniques allow
 visualisation of the location of operation through the use of visual markers that are
 placed on the patient and surgical tools. The markers are tracked by optical positioning sensors. Utilising this
@@ -210,15 +226,6 @@ can be seen in Figure \ref{fig:boneStruct}.
 	\label{fig:boneStruct}
 \end{figure}
 
-Surgeons have traditionally relied on their own
-experience of the feeling of the different structures of bones while
-making the hole for the screw drilling. Samdani et al \cite{Samdani2010}
-investigated whether the accuracy of a surgeon while placing pedicle screws
-was related to their experience. It was found that there was no statistical
-significance (p=0.58) between the groups of surgeons with differenct 
-experience levels. This suggests that a more accurate method for determining
-accuracy while placing pedicle screws is required.
-
 Differences between the structures of the 2 different components of bones
 provide a way with which the accuracy of the placement of a pedicle screw hole
 can be measured in real time. The proposed method is to use an ultrasonic 
@@ -244,7 +251,7 @@ the trajectory of the awl in real time.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics{assets/ultraArray.jpg}
+	\includegraphics[width=0.5\textwidth]{assets/ultraArray.jpg}
 	\caption{Demonstration of the concept of an awl tool with integrated ultrasonic sensor array\cite{Manbachi2016}}
 	\label{fig:ultraArray}
 \end{figure}
@@ -260,10 +267,9 @@ correctly detect an aluminium reflector through bone specimens ranging from 1-1.
 83.2$\%$ of cases at 1MHz and 70.1$\%$ of cases at 3.5MHz. Furthermore, the boundaries
 of the specimens we idetifiable ``with clinically sufficient average accuracy of 1.1mm and 0.9mm in the 1MHz
 and 3.5MHz'' images, respectively\cite{Mujagic2008}. This would indicate that the 
-problems presented by the bon attenuating the signal can be avoided without too much
+problems presented by the bone attenuating the signal can be avoided without too much
 difficulty.
 
-In order to
 
 
 \section{Robotic Surgical Equipment}
@@ -275,14 +281,33 @@ achieved 94.5$\%$ of the time as compared to 91.5$\%$ of the time for unassisted
 Furthermore, the use of robotic assistance can allow the use of less initial imaging, with benefits
 to the patient from lower radiation doses.
 
-The information collected by the nanowire sensors could easily be fed into such robotic guidance
-devices, with the device then able to adjust the planned trajectory to account for anomalous
-bending. In conjunction, the real-time feedback from the ultrasonic sensors could warn surgeons
-if the planned path was unexpectedly in danger of screw misplacement, of the data could be
-incorporated directly into the robotic guidance, though this would likely require significant
-development, as the ultrasound data is vastly more complex than that of the nanowire sensors.
+One possible difficulty that may be encountered when designing a robot for performing
+spine surgery might be the need to quantify the accuracy of the tools used. As mentioned
+previously, the bending of tools can be a source of error that would not show up on the
+current robotic systems. As a solution to this, the proposed nanowire sensors could
+be fed directly into the robot, which can then compensate for that error, rather than 
+simply display the information for a human to interpret.
+
+In addition to this, the real-time feedback from the ultrasonic sensors could warn surgeons
+if the planned path was unexpectedly in danger of screw misplacement. Alternatively, the 
+data taken from the ultrasonic sensor arracy could be sent directly to the robot, which
+would then change its trajectory appropriately.
 
 
+\section{Conclusion}
+The rapid expansion of the scope of technology in the world today has
+lead to improvements in the accuracy and repeatability of pedicle screw insertion
+operations. Computer assisted surgery can decrease the pedicle perforation rate
+by up to 75$\%$ in some cases\cite{Laine2000}. Despite this, there are still some
+challenges that face the current technology, namely the inability to detect tool
+bending during IGS operation, and the requirement of line of site for the sensors
+which can reduce operating space of the surgeon. The tool bending problem can be
+remedied by embedding nanowire strain sensors into the tools to detect bending.
+The line of sight problem can be solved by using an awl with an ultrasonic
+array built into the end to detect the bone wall. Both of these solutions 
+should provide increased accuracy of pedicle screw placement, and could be
+further enhanced by removing the surgeon from the surgery entirely and
+making a robot to perform the surgery with these enhanced sensors.
 
 
 
