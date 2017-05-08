@@ -21,7 +21,7 @@
 % paper title
 \title{Conceptual Design of a Real-Time Pedicle Screw Positioning Sensor for
 Spinal Surgery}
-\author{Luke Warlik and Gareth Arnold}
+\author{Luke Warlik(17064637) and Gareth Arnold(13383176)}
 
 
 % make the title area
@@ -30,9 +30,9 @@ Spinal Surgery}
 
 \begin{abstract}
 	Pedicle screw surgery requires high levels of accuracy and repeatability, 
-	as is involves a sensitive and vital area of the body; the spine. Solutions
+	as it involves a sensitive and vital area of the body; the spine. Solutions
 	that utilise advancements in technology are already in use today. One such
-	solution, based on combining previously taken images of the patient with 
+	solution, based on combining preoperative images of the patient with 
 	real time actions of the surgeon is called Image Guided Surgery(IGS). Unfortunately
 	this system has some drawbacks in that it can not quantify some of the errors involved
 	with the bending of the tools, and can limit the working space of the surgeon as it
@@ -44,7 +44,7 @@ Spinal Surgery}
 	An ultrasonic sensor array prototype has already been developed by Amir Manbachi with 
 	promising results. An increase in pedicle screw placement accuracy should reduce
 	the complications of involved with this type of surgery, leading to quicker 
-	patient recovery, and lower patient readmittance, reducing the load on the 
+	patient recovery, and lower patient re-admittance, reducing the load on the 
 	healthcare system.
 \end{abstract}
 
@@ -58,7 +58,7 @@ area to complete the fusion\cite{Manbachi2014}.
 
 Due to the proximity of the spinal cord, the probability of serious damage from
 misplacement of the screws is high, and the margin of error extremely small, as shown in Figure \ref{fig:dev}, 
-thwich outlines the grading system used to rate the severity of errors.
+which outlines the grading system used to rate the severity of errors.
 As such, various techniques and technologies have been developed to limit the probability of screw misplacement\cite{neuro}.
 
 \begin{figure}[h!]
@@ -70,21 +70,22 @@ As such, various techniques and technologies have been developed to limit the pr
 
 
 Conventionally, the process for inserting pedicle screws was as follows:
-First, a large insicion would be made in the patients back, near
-where the screws will be placed. Then the surgeon uses an bone awl tool
+First, a large incision would be made in the patient's back, near
+where the screws will be placed. Then the surgeon used an bone awl tool
 to puncture a hole in the outside layer of the bone, before working the
 sharp tip of the tool through the soft inner part of the bone. The surgeon
 relies on previous experience of the resistance of different types of bone to
 determine the correct heading for the tool. Once the hole has been created,
-the pedicle screw is inserted\cite{Manbachi2016}.
+the pedicle screw is inserted\cite{Manbachi2016}\cite{Sugawara2013}.
 
 With the advent of technology, this method has been augmented with the use of computers to
 create a process known as image-guided surgery (IGS)\cite{Azad2016}. An example of IGS is shown in Figure \ref{fig:igs}.
 These techniques allow
 visualisation of the location of operation through the use of visual markers that are
 placed on the patient and surgical tools. The markers are tracked by optical positioning sensors. Utilising this
-information in reference to computed tomography (CT) scan taken before surgery enables surgeons to limit the
-probability of complications through greater awareness of the topology of the operational environment\cite{Costa2011}.
+information in reference to computed tomography (CT) scans taken before surgery enables surgeons to limit the
+probability of complications through greater awareness of the topology of the operational
+environment\cite{Costa2011}\cite{Ozgur2009}.
 
 \begin{figure}[h!]
 	\centering
@@ -94,7 +95,7 @@ probability of complications through greater awareness of the topology of the op
 \end{figure}
 
 
-T. Laine et al conducted a study on 100 patients using the tradidional method and the 
+In 2000, Laine et al conducted a study on 100 patients using the traditional method and the 
 computer assisted method, and found that IGS reduced the pedicle wall perforation rates by 
 nearly a quarter across all screws inserted, as shown in Table \ref{tab:accuracy}\cite{Laine2000}.
 \begin{table}[h!]
@@ -119,13 +120,13 @@ equipment.
 Furthermore, considerable force is used in the implantation of the pedicle screws, and this force can
 result in bending deformations in both the screws and equipment\cite{Chatzistergos2010}. As these deformations occur without
 affecting the position of the visual markers, errors can occur in the ability for the system to precisely locate the
-position of the pedicle screws\cite{Castro1996}.
+position of the pedicle screws\cite{Castro1996}\cite{DiGioia1998}.
 
 
 A potential solution to these inherent issues involves the use of several sensing methods to avoid the errors
 currently encountered. In order to account for bending moments within the equipment and screw, silver
 nanowire based strain sensors will be utilised to track bending deformations in multiple dimensions. To provide
-real time-visualisation of objects and structures within the body, a tool with short-wavelength ultrasonic sensors will
+real-time visualisation of objects and structures within the body, a tool with short-wavelength ultrasonic sensors will
 replace currently used tools. In order to make full use of the feedback from these sensors, robotic guidance
 systems will be employed to assist surgeons in correctly implanting the pedicle screws. 
 
@@ -167,7 +168,49 @@ changes in the resistance of the wires due to the imposed strain.
 An obvious drawback of this system is that it does not account for bending moments, but rather axial strain.
 However, if multiple such sensors are assembled into an array such that each is arranged around a central core
 such that the substrate fibres are equally distributed around the core, then the moment imposed on the system
-can be calculated by comparison of the axial loads induced in the various sensors. In order that bending can be
+can be calculated by comparison of the axial loads induced in the various sensors. The deflection on a 
+symmetric rod can be calculated by treating it as a cantilevered beam, as shown in Figure \ref{fig:deviation}.
+
+\begin{equation}
+	y = \frac{Wl^{3}}{4EI}
+	\label{eqn:y}
+\end{equation}
+
+Where W is the load force at the end, l is the length, E is the
+modulus of elasticity of the material and I is the moment of
+inertia of the beam structure. As the beam is only supported
+at one end, the moment can then be derived as:
+
+\begin{equation}
+	M = Wl
+	\label{eqn:M}
+\end{equation}
+
+
+Combining this with the equation for axial stress caused by
+a bending moment:
+
+\begin{equation}
+	\sigma = \frac{Mc}{I}
+	\label{eqn:sigma1}
+\end{equation}
+
+Where c is half the width of the rod, results in an equation for 
+axial stress in terms of the bending deflection:
+
+\begin{equation}
+	\sigma = \frac{4yEc}{l^{2}}
+	\label{eqn:sigma2}
+\end{equation}
+
+As the change in nanowire resistance is proportional to the
+stress induced on the wire, this allows direct calculation of the
+deflection of the sensor from the change in resistance.
+
+
+
+
+In order that bending can be
 determined in two axes, two opposed pairs of sensors would be laid orthogonally to one another along the
 substrate rods, as shown in Figure \ref{fig:potential}. An array of nanowire sensors was
 found to be able to accurately record tip deflections of less than a millimetre in magnitude, which implies that it
@@ -197,9 +240,9 @@ would avoid undue shear stresses acting on the sensor housing if the tool slippe
 
 
 \section{Ultrasonic Image Guidance}
-Ultrasound is an imaging technique that involves emmiting sound waves into a
+Ultrasound is an imaging technique that involves emitting sound waves into a
 body. The sound waves are above the limit of human hearing, often being in
-the order of mHz. An image is created by capturing the waves reflected
+the order of MHz\cite{Misaridis2005}. An image is created by capturing the waves reflected
 by the organs in the body. 
 The process relies on the fact that the sound will interact with
 different areas of the body differently depending on their density and
@@ -213,16 +256,16 @@ many different areas of the body\cite{imagingExplained}.
 
 Bone is a rigid organ that developed to, among other things, 
 provide structural support for the human body. It is made primarily of
-collagen, is has two different macro level structures: Cortical and Canellous 
+collagen, is has two different macro level structures: cortical and cancellous 
 bone. The cortical bone makes up the exterior of the bone, and is a hard, 
-densely packed structure. Canellous bone, on the other hand, makes up the
-interior of the bone, and appears porous and sponge like. These structures
+densely packed structure. Cancellous bone, on the other hand, makes up the
+interior of the bone, and appears porous and sponge like\cite{Rho1998}. These structures
 can be seen in Figure \ref{fig:boneStruct}.
 
 \begin{figure}
 	\centering
 	\includegraphics{assets/boneStruct.jpg}
-	\caption{Cortical and Cancellous bone structures \cite{boneStructure}}
+	\caption{Cortical and cancellous bone structures \cite{boneStructure}}
 	\label{fig:boneStruct}
 \end{figure}
 
@@ -244,9 +287,10 @@ the higher density of the cortical bone. Finally, frame C shows a well placed
 trajectory.
 
 
+
 This method has a number
 of benefits, including: integration into the current pedicle screw insertion
-workflow, no emmision of ionising radiation, as well as being able to determine
+workflow, no emission of ionising radiation, as well as being able to determine
 the trajectory of the awl in real time.
 
 \begin{figure}[h!]
@@ -261,16 +305,22 @@ the signal quickly. Traditional ultrasound devices used for imaging soft
 human tissue normally operate in the region of 19-20MHz. At this frequency,
 the attenuation reduces the penetration of the sound to unusable levels\cite{Laugier2011}.
 To increase the penetration of the signal, the frequency of sound must be reduced, however,
-when the frequency is reduced the resolution of the ultrasoung is also reduced. In 2008 Mujagić
+when the frequency is reduced the resolution of the ultrasound is also reduced. In 2008 Mujagić
 et al found that decreasing the bandwidth of the ultrasound down to 1-3.5MHz allowed them to
 correctly detect an aluminium reflector through bone specimens ranging from 1-1.9cm in thickness in
 83.2$\%$ of cases at 1MHz and 70.1$\%$ of cases at 3.5MHz. Furthermore, the boundaries
-of the specimens we idetifiable ``with clinically sufficient average accuracy of 1.1mm and 0.9mm in the 1MHz
+of the specimens were identifiable ``with clinically sufficient average accuracy of 1.1mm and 0.9mm in the 1MHz
 and 3.5MHz'' images, respectively\cite{Mujagic2008}. This would indicate that the 
 problems presented by the bone attenuating the signal can be avoided without too much
 difficulty.
 
 
+A prototype of this type of sensor has already been created by Manbachi for 
+a PHd thesis in 2016. It was demonstrated to be capable of detecting reflectors
+within fluids, but at the time of publication was not able to compensate for
+the high attenuation rate of bone. Despite this, a proof of concept prototype
+was created, and has demonstrated the possibility of using this sensor after
+further research\cite{Manbachi2016}.
 
 \section{Robotic Surgical Equipment}
 Due to the requirement for extremely precise insertion of tools, robotic apparatus have been
@@ -290,7 +340,7 @@ simply display the information for a human to interpret.
 
 In addition to this, the real-time feedback from the ultrasonic sensors could warn surgeons
 if the planned path was unexpectedly in danger of screw misplacement. Alternatively, the 
-data taken from the ultrasonic sensor arracy could be sent directly to the robot, which
+data taken from the ultrasonic sensor array could be sent directly to the robot, which
 would then change its trajectory appropriately.
 
 
